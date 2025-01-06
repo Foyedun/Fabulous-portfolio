@@ -75,7 +75,7 @@ export const NavBar = () => {
                 <a href="https://www.instagram.com/fabulousoyedun/profilecard/?igsh=MTZoY3oycHFwNHA0Yw==" target="_blank" rel="noopener noreferrer">
                   <img src={navIcon3} alt="Instagram" />
                 </a>
-                <a href="https://wa.me/08105910605" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/+2348105910605" target="_blank" rel="noopener noreferrer">
                   <img src={navIcon4} alt="WhatsApp" />
                 </a>
               </div>
