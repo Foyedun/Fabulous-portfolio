@@ -11,7 +11,7 @@ export const Banner = () => {
   const [text, setText] = useState('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate = [ "Web Developer", "Web Designer", "UI/UX Designer" ];
+  const toRotate = ["Web Developer", "Web Designer", "UI/UX Designer"];
   const period = 2000;
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const Banner = () => {
     }, delta);
 
     return () => { clearInterval(ticker) };
-  }, [text])
+  }, [text, delta, loopNum]); // Added `delta` and `loopNum`
 
   const tick = () => {
     let i = loopNum % toRotate.length;
@@ -45,7 +45,11 @@ export const Banner = () => {
     } else {
       setIndex(prevIndex => prevIndex + 1);
     }
-  }
+  };
+
+  const handleConnect = () => {
+    console.log('connect');
+  };
 
   return (
     <section className="banner" id="home">
@@ -54,26 +58,34 @@ export const Banner = () => {
           <Col xs={12} md={6} xl={7}>
             <TrackVisibility>
               {({ isVisible }) =>
-              <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Welcome to my Portfolio</span>
-                <h1>{`Hi! I'm Segun Shogo Oyedun`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1>
-                  <p>Front-End Developer with expertise in building responsive
-                    web applications using React.js and JavaScript. Recently certified
-                    from Tech-Zone Academy</p>
-                  <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
-              </div>}
+                <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+                  <span className="tagline">Welcome to my Portfolio</span>
+                  <h1>
+                    {`Hi! I'm Segun Shogo Oyedun`}
+                    <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'>
+                      <span className="wrap">{text}</span>
+                    </span>
+                  </h1>
+                  <p>
+                    Front-End Developer with expertise in building responsive web applications using React.js and JavaScript.
+                    Recently certified from Tech-Zone Academy.
+                  </p>
+                  <button onClick={handleConnect}>Let’s Connect <ArrowRightCircle size={25} /></button>
+                </div>
+              }
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5}>
             <TrackVisibility>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <img src={headerImg} alt="Header Img"/>
-                </div>}
+                  <img src={headerImg} alt="Header Img" />
+                </div>
+              }
             </TrackVisibility>
           </Col>
         </Row>
       </Container>
     </section>
-  )
-}
+  );
+};
