@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import headerImg from "../assets/img/header-img.svg";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
@@ -10,10 +10,11 @@ export const Banner = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const toRotate = ["Web Developer", "Web Designer", "UI/UX Designer"];
   const period = 2000;
 
-  // Memoize the tick function to prevent unnecessary re-creations
+  // Use useMemo to memoize the toRotate array
+  const toRotate = useMemo(() => ["Web Developer", "Web Designer", "UI/UX Designer"], []);
+
   const tick = useCallback(() => {
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
@@ -33,7 +34,7 @@ export const Banner = () => {
       setLoopNum(loopNum + 1);
       setDelta(500);
     }
-  }, [loopNum, isDeleting, text]);
+  }, [loopNum, isDeleting, text, toRotate]); // Keep toRotate as a dependency
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -41,7 +42,7 @@ export const Banner = () => {
     }, delta);
 
     return () => { clearInterval(ticker) };
-  }, [tick, delta]); // Use `tick` as a dependency
+  }, [tick, delta]);
 
   const handleConnect = () => {
     console.log('connect');
