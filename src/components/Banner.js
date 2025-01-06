@@ -14,14 +14,7 @@ export const Banner = () => {
   const toRotate = ["Web Developer", "Web Designer", "UI/UX Designer"];
   const period = 2000;
 
-  useEffect(() => {
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
-
-    return () => { clearInterval(ticker) };
-  }, [text, delta, loopNum]); // Added `delta` and `loopNum`
-
+  // Define tick function above the useEffect
   const tick = () => {
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
@@ -46,6 +39,14 @@ export const Banner = () => {
       setIndex(prevIndex => prevIndex + 1);
     }
   };
+
+  useEffect(() => {
+    let ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => { clearInterval(ticker) };
+  }, [text, delta, loopNum]); // Added `delta` and `loopNum`
 
   const handleConnect = () => {
     console.log('connect');

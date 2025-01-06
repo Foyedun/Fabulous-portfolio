@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";  // Removed useEffect import
 import { Col, Row, Alert } from "react-bootstrap";
 
 export const Newsletter = () => {
@@ -33,9 +33,9 @@ export const Newsletter = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          service_id: "service_wzzyeea", 
-          template_id: "template_zqfsh9n", 
-          user_id: "hXc_gLqUAPzLw8Osa", 
+          service_id: "service_wzzyeea",
+          template_id: "template_zqfsh9n",
+          user_id: "hXc_gLqUAPzLw8Osa",
           template_params: {
             email: email,
             news: randomNews,
